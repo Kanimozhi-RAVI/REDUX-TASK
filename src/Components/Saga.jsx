@@ -5,7 +5,11 @@ const API_URL = 'https://68382ddd2c55e01d184c471b.mockapi.io/users';
 
 function* fetchuser() {
     try{
-        const res = yield call (fetch,API_URL);
+        const res = yield call (fetch,API_URL,{
+          method:'GET',
+          // headers: {'Content-Type:,'  }
+          
+        });
         const data = yield res.json();
         yield put({ type: GETALL_USERDETAILE_SUCCESS, payload: data });
 
