@@ -7,7 +7,8 @@ function* fetchuser() {
     try{
         const res = yield call (fetch,API_URL,{
           method:'GET',
-          // headers: {'Content-Type:,'  }
+          headers: { 'Content-Type': 'application/json' },
+           
           
         });
         const data = yield res.json();

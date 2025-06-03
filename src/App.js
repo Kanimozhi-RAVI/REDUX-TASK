@@ -1,11 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router';
-import Main from './Components/Main';
+import Main from './Components/Login_page/Main';
 import Navbar from './Components/Nav_bar/Navbar';
-import OutlinedCard from './Components/Card';
-import RegistrationForm from './Components/RegistrationForm';
-import ProfilePage from './Components/ProfilePage';
+import OutlinedCard from './Components/Nav_bar/Card';
+import RegistrationForm from './Components/Sign up_page/RegistrationForm';
+import ProfilePage from './Components/Profile_page/ProfilePage';
 
 function App() {
   return (

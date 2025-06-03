@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import register from './Assests/reg.jpg';
+import register from '../Assests/reg.jpg';
 
 function RegistrationForm() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    firstName: '', lastName: '', email: '', password: '', birthday: '',
-    phone: '', gender: '', state: '', city: '', pincode: '',
+    fullname:'', lastName: '', dateofBirth:'', phone:'', Gender:''
+
   });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const val = type === 'radio' ? (checked ? value : formData.gender) : value;
-    setFormData({ ...formData, [name]: val });
-  };
-
+  const  handleChange = (e) =>{
+    e.preventDefault();
+    const { name , value} = e.target;
+    setFormData((pre)=> ({...pre, [name]:value} ));
+  
+  } 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem('profileData', JSON.stringify(formData));

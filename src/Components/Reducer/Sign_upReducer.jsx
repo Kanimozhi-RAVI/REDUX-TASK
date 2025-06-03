@@ -1,4 +1,4 @@
-import { GETALL_USERDETAILE_FAILURE, GETALL_USERDETAILE_REQUEST, GETALL_USERDETAILE_SUCCESS } from "./Type";
+import { GET_SIGNUP_DETAILS_REQUEST,GET_SIGNUP_DETAILS_SUCCESS,GET_SIGNUP_DETAILS_FAILURE } from "../Type";
 
 const initialState = {
 users: [],
@@ -8,19 +8,19 @@ error:null,
 
 const userReducer = (state = initialState, action) => {
   switch(action.type) {
-    case GETALL_USERDETAILE_REQUEST:
+    case GET_SIGNUP_DETAILS_REQUEST:
     return {
         ...state,
         loading:true,
         error:null,
     };
-    case GETALL_USERDETAILE_SUCCESS:
+    case GET_SIGNUP_DETAILS_SUCCESS:
         return {
             ...state,
             loading:false,
            users:action.payload,
         };
-        case GETALL_USERDETAILE_FAILURE:
+        case GET_SIGNUP_DETAILS_FAILURE:
             return{
             ...state,
             loading:false,
@@ -29,5 +29,7 @@ const userReducer = (state = initialState, action) => {
             default:
                 return state;
   }
+
+
 };
 export default userReducer;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getalluserdetailRequest } from './MainAction';
-import './Main/Main.css';
+import { getalluserdetailRequest } from '../Actions/MainAction';
+import '../Login_page/Main.css';
 import { FaUserCircle } from "react-icons/fa";
 import { useNavigate } from 'react-router';
 
