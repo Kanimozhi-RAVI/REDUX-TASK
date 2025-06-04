@@ -1,43 +1,63 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getloginRequest,
+  deleteUserRequest,
+} from "../Actions/MainAction";
 
-function ProfilePage() {
-  const userData = JSON.parse(localStorage.getItem("userData"));
+const UserList = () => {
+  const dispatch = useDispatch();
+  const { users = [], loading, error } = useSelector((state) => state.user ?? {});
 
-  if (!userData) {
-    return (
-      <div className="container text-center mt-5">
-        <h3>No user data found. Please register first.</h3>
-      </div>
-    );
-  }
+  useEffect(() => {
+    dispatch(getloginRequest());
+  }, [dispatch]);
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      dispatch(deleteUserRequest(id));
+    }
+  };
+
+  if (loading) return <p>Loading users...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (users.length === 0) return <p>No users found.</p>;
+
   return (
     <div className="container mt-5">
-      <div className="card shadow-lg p-4 border-0">
-        <h2 className="text-center mb-4" style={{ color: "#812990" }}>User Profile</h2>
-        <div className="row mb-3">
-          <div className="col-md-6"><strong>First Name:</strong> {userData.firstName}</div>
-          <div className="col-md-6"><strong>Last Name:</strong> {userData.lastName}</div>
-        </div>
-        <div className="row mb-3">
-          <div className="col-md-6"><strong>Email:</strong> {userData.email}</div>
-          <div className="col-md-6"><strong>Password:</strong> {userData.password}</div>
-        </div>
-        <div className="row mb-3">
-          <div className="col-md-6"><strong>Date of Birth:</strong> {userData.dob}</div>
-          <div className="col-md-6"><strong>Phone Number:</strong> {userData.phone}</div>
-        </div>
-        <div className="row mb-3">
-          <div className="col-md-6"><strong>Gender:</strong> {userData.gender}</div>
-          <div className="col-md-6"><strong>State:</strong> {userData.state}</div>
-        </div>
-        <div className="row mb-3">
-          <div className="col-md-6"><strong>City:</strong> {userData.city}</div>
-          <div className="col-md-6"><strong>Pincode:</strong> {userData.pincode}</div>
-        </div>
-      </div>
+      <h2>User List</h2>
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td>{user.firstName}</td>
+              <td>{user.lastName}</td>
+              <td>{user.email}</td>
+              <td>{user.phone}</td>
+              <td>
+                {/* Delete button */}
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={() => handleDelete(user.id)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-}
+};
 
-export default ProfilePage;
+export default UserList;

@@ -2,7 +2,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 import userReducer from './MainReducer'; 
 
 const rootReducer = combineReducers({
-  user: userReducer,
+  userData: userReducer,
 });
 
 export default rootReducer;
