@@ -24,9 +24,12 @@ const Main = () => {
     dispatch(getloginRequest(formData));
 
     setTimeout(() => {
-      navigate("/profile");
+      navigate("/nav");
     }, 1000);
   };
+  const regPage =() => {
+    navigate('/form')
+  }
 
   return (
     <div className='body-text'>
@@ -35,7 +38,7 @@ const Main = () => {
           <div className="extra-left">
             <h2>Welcome Back!</h2>
             <p>Experience the best platform with stunning design.</p>
-            <button className="extra-register-btn">REGISTER</button>
+            <button className="extra-register-btn" onClick={regPage}>REGISTER</button>
           </div>
 
           <div className="extra-right glass">
